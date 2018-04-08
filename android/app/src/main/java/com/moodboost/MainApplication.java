@@ -1,4 +1,4 @@
-package com.starterapp;
+package com.moodboost;
 
 import android.app.Application;
 

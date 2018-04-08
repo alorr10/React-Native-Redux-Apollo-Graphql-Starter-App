@@ -1,16 +1,25 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import { connect } from 'react-redux'
-import IncreaseCounterContainer from '../containers/IncreaseCounterContainer'
-
+import React from "react";
+import { View, Text, Button } from "react-native";
+import { connect } from "react-redux";
+import MoodBoostContainer from "../containers/MoodBoostContainer";
+import { toggleMoodBoostContainer } from "../actions";
 class ScreenOne extends React.Component {
-
+  showMoodBoost = () => {
+    this.props.toggleMoodBoostContainer(!this.props.moodBoostContainerIsOpen);
+  };
   render() {
-    const { navigation } = this.props
+    const { moodBoostContainerIsOpen, toggleMoodBoostContainer } = this.props;
     return (
-        <View style={styles.container}>
-          <IncreaseCounterContainer />
-        </View>
+      <View style={styles.container}>
+        <Button
+          title="Show Today's Boost"
+          onPress={() => this.showMoodBoost()}
+        />
+        <MoodBoostContainer
+          moodBoostContainerIsOpen={moodBoostContainerIsOpen}
+          toggleMoodBoostContainer={toggleMoodBoostContainer}
+        />
+      </View>
     );
   }
 }
@@ -18,23 +27,25 @@ class ScreenOne extends React.Component {
 const styles = {
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#FFBE00',
-  },
-}
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FFBE00"
+  }
+};
 
-// const mapStateToProps = state => {
-//   return {
-//     user: state.users
-//   }
-// }
+const mapStateToProps = state => {
+  return {
+    moodBoostContainerIsOpen: state.nav.moodBoostContainerIsOpen
+  };
+};
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     shouldAuthenticateUser: () => { dispatch(shouldAuthenticateUser()) },
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleMoodBoostContainer: open => {
+      dispatch(toggleMoodBoostContainer(open));
+    }
+  };
+};
 
-export default ScreenOne
-// export default connect(mapStateToProps, mapDispatchToProps) (ScreenOne);
+// export default ScreenOne
+export default connect(mapStateToProps, mapDispatchToProps)(ScreenOne);

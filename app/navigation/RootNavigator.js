@@ -43,4 +43,6 @@ const mapStateToProps = state => ({
   nav: state.nav
 });
 
-export default connect(mapStateToProps)(RootNavigator);
+// export default connect(mapStateToProps)(RootNavigator);
+
+export default ScreenOne;

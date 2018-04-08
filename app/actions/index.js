@@ -1,21 +1,9 @@
-import { INCREMENT_COUNT, DECREMENT_COUNT, RESET_COUNT  } from './types'
+import { INCREMENT_COUNT, DECREMENT_COUNT, RESET_COUNT, TOGGLE_MOODBOOST_CONTAINER } from './types'
 
-export const incrementCounter = payload => {
-  return {
-    type: INCREMENT_COUNT,
-    payload
-  }
-}
 
-export const decrementCounter = payload => {
+export const toggleMoodBoostContainer = isOpen => {
   return {
-    type: DECREMENT_COUNT,
-    payload
-  }
-}
-
-export const resetCounter = () => {
-  return {
-    type: RESET_COUNT,
+    type: TOGGLE_MOODBOOST_CONTAINER,
+    payload: isOpen,
   }
 }
